@@ -7,7 +7,7 @@
 [![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](#-cara-menjalankan)
-[![Build](https://img.shields.io/badge/build-CMake%20%7C%20g++-blue)](#-cara-menjalankan)
+[![Build](https://img.shields.io/badge/build-g%2B%2B-blue)](#-cara-menjalankan)
 
 </div>
 
@@ -56,8 +56,6 @@ Ketikan Pilihan Anda (1-6): 2
 
 ## 🚀 Cara Menjalankan
 
-### Opsi 1 — Kompilasi manual (paling cepat)
-
 ```bash
 # Linux / macOS
 g++ -std=c++11 -o warehouse src/main.cpp
@@ -68,26 +66,12 @@ g++ -std=c++11 -o warehouse.exe src/main.cpp
 warehouse.exe
 ```
 
-### Opsi 2 — Menggunakan CMake
-
-```bash
-cmake -B build
-cmake --build build
-
-# Windows
-.\build\Release\warehouse_inventory.exe
-
-# Linux / macOS
-./build/warehouse_inventory
-```
-
 ## 📂 Struktur Proyek
 
 ```
 warehouse-inventory-system/
 ├── src/
 │   └── main.cpp        # Seluruh logika aplikasi
-├── CMakeLists.txt      # Konfigurasi build CMake
 ├── LICENSE             # Lisensi MIT
 └── README.md
 ```
