@@ -108,7 +108,7 @@ public:
             return;
         }
         cout << "\n=======================================================\n";
-        cout << "                DAFTAR INVENTARIS GUDANG               \n";
+        cout << "                  DAFTAR INVENTARIS GUDANG             \n";
         cout << "=======================================================\n";
         for (int i = 0; i < jumlahProduk; i++) {
             cout << i + 1 << ". SKU   : " << inventaris[i].getSKU() << "\n";
@@ -153,7 +153,7 @@ public:
         }
         cin.ignore();
         string cariSKU;
-        cout << "Masukkan SKU produk yang ingin diupdate stoknya: ";
+        cout << "Masukkan SKU produk yang ingin diupdate: ";
         getline(cin, cariSKU);
 
         bool ditemukan = false;
@@ -163,13 +163,20 @@ public:
                 cout << "\n[Produk Ditemukan]\n";
                 cout << "Nama Produk   : " << inventaris[i].getNama() << "\n";
                 cout << "Stok Saat Ini : " << inventaris[i].getStok() << "\n";
+                cout << "Harga Saat Ini: Rp " << inventaris[i].getHarga() << "\n\n";
                 
                 int stokBaru;
-                cout << "Masukkan jumlah stok baru: ";
-                cin >> stokBaru;
-                inventaris[i].setStok(stokBaru);
+                double hargaBaru;
                 
-                cout << "[Sukses] Stok produk berhasil diperbarui!\n";
+                cout << "Masukkan jumlah stok baru : ";
+                cin >> stokBaru;
+                cout << "Masukkan harga baru (Rp)  : ";
+                cin >> hargaBaru;
+
+                inventaris[i].setStok(stokBaru);
+                inventaris[i].setHarga(hargaBaru);
+                
+                cout << "[Sukses] Data produk berhasil diperbarui!\n";
                 break;
             }
         }
@@ -220,7 +227,7 @@ int main() {
         cout << "1. Tambah Produk\n";
         cout << "2. Tampilkan Produk\n";
         cout << "3. Cari Produk\n";
-        cout << "4. Update Stok\n";
+        cout << "4. Update Stok & Harga\n";
         cout << "5. Hapus Produk\n";
         cout << "6. Keluar\n";
         cout << "Ketikan Pilihan Anda (1-6): ";
