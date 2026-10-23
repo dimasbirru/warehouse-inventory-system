@@ -4,10 +4,10 @@
 
 **Aplikasi manajemen inventaris gudang berbasis konsol — C++ berorientasi objek dengan penyimpanan data otomatis.**
 
-[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
+[![C++](https://img.shields.io/badge/C%2B%2B-11-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](#-cara-menjalankan)
-[![Build](https://img.shields.io/badge/build-g%2B%2B-blue)](#-cara-menjalankan)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](#-cara-menjalankan-dev-c)
+[![Build](https://img.shields.io/badge/build-Dev--C%2B%2B-blue)](#-cara-menjalankan-dev-c)
 
 </div>
 
@@ -35,56 +35,13 @@ Data inventaris **tersimpan otomatis** ke file `gudang.txt` saat program ditutup
 | 🗑️ | **Hapus Produk** | Hapus produk dengan penggeseran elemen array (shift) |
 | 💾 | **Penyimpanan Otomatis** | Simpan ke `gudang.txt` saat keluar & muat otomatis saat program dibuka |
 
-## 🖥️ Preview
+## 🚀 Cara Menjalankan (Dev-C++)
 
-```
-========================================
-    APLIKASI WAREHOUSE INVENTORY SYSTEM
-========================================
-1. Tambah Produk
-2. Tampilkan Produk
-3. Cari Produk
-4. Update Stok
-5. Hapus Produk
-6. Keluar
-Ketikan Pilihan Anda (1-6): 2
+1. Buka **Dev-C++** → `File` → `Open` → pilih `src/main.cpp`.
+2. Klik **Execute** → **Compile & Run** (atau tekan `F11`).
+3. Jendela konsol akan terbuka dan menu aplikasi langsung tampil.
 
-=======================================================
-                DAFTAR INVENTARIS GUDANG
-=======================================================
-1. SKU   : SKU-001
-   Nama  : Kardus Packing 10kg
-   Stok  : 120
-   Harga : Rp 3500
--------------------------------------------------------
-```
-
-## 🚀 Cara Menjalankan
-
-```bash
-# Linux / macOS
-g++ -std=c++11 -o warehouse src/main.cpp
-./warehouse
-
-# Windows (MinGW / TDM-G++)
-g++ -std=c++11 -o warehouse.exe src/main.cpp
-warehouse.exe
-```
-
-> Jalankan dari **root proyek** agar file `gudang.txt` tersimpan konsisten di satu lokasi.
-
-## 📂 Struktur Proyek
-
-```
-warehouse-inventory-system/
-├── src/
-│   ├── main.cpp        # Class Produk & GudangInventaris + menu utama
-│   └── gudang.txt      # Data inventaris (dibuat otomatis saat program keluar)
-├── LICENSE             # Lisensi MIT
-└── README.md
-```
-
-> `gudang.txt` adalah data runtime dan **tidak ikut di-commit** ke repository.
+> File `gudang.txt` dibuat otomatis di folder tempat program dijalankan (saat lewat Dev-C++, biasanya di folder `src/`).
 
 ## 🧠 Konsep yang Dipelajari
 
@@ -94,16 +51,6 @@ warehouse-inventory-system/
 - Pencarian linier berdasarkan kunci (SKU)
 - Algoritma penghapusan elemen array (memindahkan elemen ke kiri)
 - **File I/O** dengan `ifstream` / `ofstream` untuk persistensi data
-
-## 🗺️ Roadmap
-
-- [x] ~~Penyimpanan data ke file (`fstream`) agar tidak hilang saat program ditutup~~
-- [x] ~~Refactor ke paradigma OOP~~
-- [ ] Kapasitas dinamis menggunakan `std::vector`
-- [ ] Validasi input yang lebih ketat (angka, format SKU, duplikat)
-- [ ] Pencarian binaris setelah data diurutkan
-- [ ] Antarmuka berbasis terminal yang lebih rapi (warna & layout)
-- [ ] Ekspor laporan inventaris ke CSV
 
 ## 📄 Lisensi
 
