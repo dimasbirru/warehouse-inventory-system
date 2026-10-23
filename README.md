@@ -2,7 +2,7 @@
 
 # 📦 Warehouse Inventory System
 
-**Aplikasi manajemen inventaris gudang berbasis konsol — C++ murni, tanpa library eksternal.**
+**Aplikasi manajemen inventaris gudang berbasis konsol — C++ berorientasi objek dengan penyimpanan data otomatis.**
 
 [![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -16,9 +16,13 @@
 ## 📖 Tentang
 
 Warehouse Inventory System adalah program konsol sederhana untuk mencatat dan mengelola
-stok barang di sebuah gudang. Dibangun menggunakan **C++ murni** dengan pendekatan
-*menu-driven*, sehingga mudah dipahami bahkan bagi pemula yang sedang belajar
-fundamental pemrograman: `struct`, array, perulangan, percabangan, dan operasi CRUD.
+stok barang di sebuah gudang. Dibangun menggunakan **C++ murni** dengan paradigma
+**Object-Oriented Programming (OOP)**: data produk dibungkus dalam class `Produk`
+(encapsulation), sedangkan seluruh operasi inventaris ditangani oleh class
+`GudangInventaris`.
+
+Data inventaris **tersimpan otomatis** ke file `gudang.txt` saat program ditutup dan
+**dimuat kembali** saat program dijalankan, sehingga data tidak hilang antar sesi.
 
 ## ✨ Fitur
 
@@ -29,6 +33,7 @@ fundamental pemrograman: `struct`, array, perulangan, percabangan, dan operasi C
 | 🔍 | **Cari Produk** | Pencarian produk berdasarkan SKU secara linear |
 | 🔄 | **Update Stok** | Perbarui jumlah stok produk berdasarkan SKU |
 | 🗑️ | **Hapus Produk** | Hapus produk dengan penggeseran elemen array (shift) |
+| 💾 | **Penyimpanan Otomatis** | Simpan ke `gudang.txt` saat keluar & muat otomatis saat program dibuka |
 
 ## 🖥️ Preview
 
@@ -66,31 +71,39 @@ g++ -std=c++11 -o warehouse.exe src/main.cpp
 warehouse.exe
 ```
 
+> Jalankan dari **root proyek** agar file `gudang.txt` tersimpan konsisten di satu lokasi.
+
 ## 📂 Struktur Proyek
 
 ```
 warehouse-inventory-system/
 ├── src/
-│   └── main.cpp        # Seluruh logika aplikasi
+│   ├── main.cpp        # Class Produk & GudangInventaris + menu utama
+│   └── gudang.txt      # Data inventaris (dibuat otomatis saat program keluar)
 ├── LICENSE             # Lisensi MIT
 └── README.md
 ```
 
+> `gudang.txt` adalah data runtime dan **tidak ikut di-commit** ke repository.
+
 ## 🧠 Konsep yang Dipelajari
 
-- `struct` untuk memodelkan data produk
+- **OOP**: class, encapsulation (`private` + getter/setter), constructor
 - Array statik dan pengelolaan jumlah elemen
 - Algoritma **CRUD** (Create, Read, Update, Delete)
 - Pencarian linier berdasarkan kunci (SKU)
 - Algoritma penghapusan elemen array (memindahkan elemen ke kiri)
+- **File I/O** dengan `ifstream` / `ofstream` untuk persistensi data
 
 ## 🗺️ Roadmap
 
+- [x] ~~Penyimpanan data ke file (`fstream`) agar tidak hilang saat program ditutup~~
+- [x] ~~Refactor ke paradigma OOP~~
 - [ ] Kapasitas dinamis menggunakan `std::vector`
-- [ ] Penyimpanan data ke file (`fstream`) agar tidak hilang saat program ditutup
 - [ ] Validasi input yang lebih ketat (angka, format SKU, duplikat)
 - [ ] Pencarian binaris setelah data diurutkan
 - [ ] Antarmuka berbasis terminal yang lebih rapi (warna & layout)
+- [ ] Ekspor laporan inventaris ke CSV
 
 ## 📄 Lisensi
 

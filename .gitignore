@@ -25,6 +25,9 @@ compile_commands.json
 *.suo
 *.user
 
+# --- Data runtime ---
+gudang.txt
+
 # --- OS junk ---
 Thumbs.db
 .DS_Store
