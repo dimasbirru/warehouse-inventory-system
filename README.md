@@ -1,63 +1,48 @@
-<div align="center">
+# Warehouse Inventory System
 
-# 📦 Warehouse Inventory System
+Repositori ini berisi evolusi proyek **Warehouse Inventory System** dari versi konsol berbasis C++ menjadi aplikasi web berbasis Laravel.
 
-**Aplikasi manajemen inventaris gudang berbasis konsol — C++ berorientasi objek dengan penyimpanan data otomatis.**
+## Struktur Proyek
 
-[![C++](https://img.shields.io/badge/C%2B%2B-11-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](#-cara-menjalankan-dev-c)
-[![Build](https://img.shields.io/badge/build-Dev--C%2B%2B-blue)](#-cara-menjalankan-dev-c)
+```text
+warehouse-inventory-system/
+├── v1-console/   # Versi 1 - Aplikasi konsol C++ (CRUD + File I/O)
+└── v2-laravel/   # Versi 2 - Aplikasi web Laravel (Rewrite)
+```
 
-</div>
+## Versi 1 - Console (C++)
 
----
+Berada di folder [`v1-console/`](./v1-console/).
 
-## 📖 Tentang
+- **Bahasa**: C++ (OOP)
+- **Fitur**: Tambah, tampil, cari, update stok & harga, hapus produk
+- **Penyimpanan**: File `gudang.txt` (auto-save & auto-load)
+- **Analitik**: Laporan ringkas dengan Python (`analytics/report.py`)
+- **Cara menjalankan**: Bisa lewat `run.bat` atau compile manual dengan `g++`
 
-Warehouse Inventory System adalah program konsol sederhana untuk mencatat dan mengelola
-stok barang di sebuah gudang. Dibangun menggunakan **C++ murni** dengan paradigma
-**Object-Oriented Programming (OOP)**: data produk dibungkus dalam class `Produk`
-(encapsulation), sedangkan seluruh operasi inventaris ditangani oleh class
-`GudangInventaris`.
+Lihat [README v1-console](./v1-console/README.md) untuk detail lengkap.
 
-Data inventaris **tersimpan otomatis** ke file `gudang.txt` saat program ditutup dan
-**dimuat kembali** saat program dijalankan, sehingga data tidak hilang antar sesi.
+## Versi 2 - Web (Laravel) - *In Progress*
 
-## ✨ Fitur
+Berada di folder [`v2-laravel/`](./v2-laravel/).
 
-| # | Fitur | Deskripsi |
-|---|-------|-----------|
-| ➕ | **Tambah Produk** | Input SKU, nama, stok, dan harga (kapasitas maks. 5 produk) |
-| 📋 | **Tampilkan Produk** | Menampilkan seluruh daftar inventaris dalam format tabel |
-| 🔍 | **Cari Produk** | Pencarian produk berdasarkan SKU secara linear |
-| 🔄 | **Update Stok** | Perbarui jumlah stok produk berdasarkan SKU |
-| 🗑️ | **Hapus Produk** | Hapus produk dengan penggeseran elemen array (shift) |
-| 💾 | **Penyimpanan Otomatis** | Simpan ke `gudang.txt` saat keluar & muat otomatis saat program dibuka |
+Rewrite dari versi konsol ke aplikasi web dengan tujuan:
 
-## 🚀 Cara Menjalankan (Dev-C++)
+- **Database**: MySQL/SQLite (ganti `gudang.txt`)
+- **CRUD Web**: Interface berbasis web dengan validasi
+- **Dashboard**: Ringkasan stok, nilai aset, produk stok menipis
+- **Lebih realistis**: Siap dikembangkan jadi sistem gudang yang bisa dipakai beneran
 
-1. Buka **Dev-C++** → `File` → `Open` → pilih `src/main.cpp`.
-2. Klik **Execute** → **Compile & Run** (atau tekan `F11`).
-3. Jendela konsol akan terbuka dan menu aplikasi langsung tampil.
+## Progress
 
-> File `gudang.txt` dibuat otomatis di folder tempat program dijalankan (saat lewat Dev-C++, biasanya di folder `src/`).
+- [x] Pindahkan versi C++ ke `v1-console/`
+- [ ] Setup Laravel di `v2-laravel/`
+- [ ] Buat CRUD Produk
+- [ ] Import data dari `gudang.txt`
+- [ ] Tambah dashboard & fitur pendukung
 
-## 🧠 Konsep yang Dipelajari
+## Lisensi
 
-- **OOP**: class, encapsulation (`private` + getter/setter), constructor
-- Array statik dan pengelolaan jumlah elemen
-- Algoritma **CRUD** (Create, Read, Update, Delete)
-- Pencarian linier berdasarkan kunci (SKU)
-- Algoritma penghapusan elemen array (memindahkan elemen ke kiri)
-- **File I/O** dengan `ifstream` / `ofstream` untuk persistensi data
+Proyek ini dilisensikan dibawah [MIT License](./v1-console/LICENSE).
 
-## 📄 Lisensi
-
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
-
----
-
-<div align="center">
-Dibuat oleh <a href="https://github.com/dimasbirru">@dimasbirru</a> · Belajar C++ satu proyek setiap waktu 💻
-</div>
+Dibuat oleh [@dimasbirru](https://github.com/dimasbirru)
