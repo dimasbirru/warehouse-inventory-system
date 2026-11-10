@@ -31,3 +31,7 @@ gudang.txt
 # --- OS junk ---
 Thumbs.db
 .DS_Store
+
+# --- v2 PHP ---
+v2-php/config/database.local.php
+v2-php/public/uploads/
