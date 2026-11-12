@@ -27,6 +27,15 @@ class GudangInventaris {
         }
         return null; 
     }
+    public function cariBanyak(string $keyword): array {
+        $stmt = $this->pdo->prepare("SELECT * FROM produk WHERE sku LIKE ? OR nama LIKE ? ORDER BY id ASC");
+        $stmt->execute(["%$keyword%", "%$keyword%"]);
+        $hasil = [];
+        while ($row = $stmt->fetch()) {
+            $hasil[] = new Produk($row['sku'], $row['nama'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
+        }
+        return $hasil;
+    }
 
     public function tambah(Produk $produk): bool {
         if ($this->cariBySKU($produk->getSKU()) !== null) {

@@ -4,7 +4,14 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/GudangInventaris.php';
 
 $gudang = new GudangInventaris($pdo);
-$semuaProduk = $gudang->semuaProduk();
+$keyword = $_GET['cari'] ?? '';
+if ($keyword !== '') {
+    // Jika sedang mencari, ambil data berdasarkan keyword
+    $semuaProduk = $gudang->cariBanyak($keyword);
+} else {
+    // Jika tidak, tampilkan semua
+    $semuaProduk = $gudang->semuaProduk();
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -27,8 +34,16 @@ $semuaProduk = $gudang->semuaProduk();
         <?php endif; ?>
     <?php endif; ?>
 
-    <p><a href="tambah.php" class="btn btn-success">+ Tambah Produk Baru</a></p>
+     <!-- FITUR PENCARIAN BARU -->
+    <form method="GET" action="" style="margin-bottom: 20px; display: flex; gap: 10px;">
+        <input type="text" name="cari" placeholder="Cari SKU atau Nama Produk..." value="<?= htmlspecialchars($_GET['cari'] ?? '') ?>" style="padding: 10px; flex: 1; border: 1px solid #ccc; border-radius: 4px;">
+        <button type="submit" class="btn">Cari</button>
+    </form>
 
+    <p>
+        <a href="tambah.php" class="btn btn-success">+ Tambah Produk Baru</a>
+        <a href="laporan.php" class="btn" style="background:#8e44ad;">📊 Lihat Laporan</a>
+    </p>
     <table>
         <thead>
             <tr>
