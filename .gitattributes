@@ -1,0 +1,7 @@
+*.php linguist-language=PHP
+*.cpp linguist-language=C++
+*.py linguist-language=Python
+*.bat linguist-language=Batchfile
+
+# Agar file teks tidak mengganggu statistik
+*.txt text
