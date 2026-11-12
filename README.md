@@ -1,48 +1,54 @@
-# Warehouse Inventory System
+# 📦 Warehouse Inventory System
 
-Repositori ini berisi evolusi proyek **Warehouse Inventory System** dari versi konsol berbasis C++ menjadi aplikasi web berbasis Laravel.
+Repositori ini berisi evolusi proyek **Warehouse Inventory System** dari versi konsol berbasis C++ menjadi aplikasi web berbasis **PHP Native**.
 
-## Struktur Proyek
+## 📂 Struktur Proyek
 
 ```text
 warehouse-inventory-system/
-├── v1-console/   # Versi 1 - Aplikasi konsol C++ (CRUD + File I/O)
-└── v2-laravel/   # Versi 2 - Aplikasi web Laravel (Rewrite)
-```
+├── v1-console/   # Versi 1 - Aplikasi konsol C++
+└── v2-php/       # Versi 2 - Aplikasi web PHP Native
 
-## Versi 1 - Console (C++)
+Versi 1 - Console (C++)
+Berada di folder v1-console/.
+Bahasa: C++ (OOP)
 
-Berada di folder [`v1-console/`](./v1-console/).
+Fitur: Tambah, tampil, cari, update stok & harga, hapus produk
 
-- **Bahasa**: C++ (OOP)
-- **Fitur**: Tambah, tampil, cari, update stok & harga, hapus produk
-- **Penyimpanan**: File `gudang.txt` (auto-save & auto-load)
-- **Analitik**: Laporan ringkas dengan Python (`analytics/report.py`)
-- **Cara menjalankan**: Bisa lewat `run.bat` atau compile manual dengan `g++`
+Penyimpanan: File gudang.txt (auto-save & auto-load)
 
-Lihat [README v1-console](./v1-console/README.md) untuk detail lengkap.
+Analitik: Laporan ringkas dengan Python (analytics/report.py)
 
-## Versi 2 - Web (Laravel) - *In Progress*
+Cara menjalankan: Bisa lewat run.bat atau compile manual dengan g++
 
-Berada di folder [`v2-laravel/`](./v2-laravel/).
+Versi 2 - Web App (PHP Native + MySQL)
+Berada di folder v2-php/.
 
-Rewrite dari versi konsol ke aplikasi web dengan tujuan:
+Ini adalah rewrite dari versi konsol ke aplikasi web menggunakan PHP Native (tanpa framework), PDO, dan MySQL.
 
-- **Database**: MySQL/SQLite (ganti `gudang.txt`)
-- **CRUD Web**: Interface berbasis web dengan validasi
-- **Dashboard**: Ringkasan stok, nilai aset, produk stok menipis
-- **Lebih realistis**: Siap dikembangkan jadi sistem gudang yang bisa dipakai beneran
+Database: MySQL (menggantikan gudang.txt)
 
-## Progress
+CRUD Web: Interface berbasis web dengan validasi
 
-- [x] Pindahkan versi C++ ke `v1-console/`
-- [ ] Setup Laravel di `v2-laravel/`
-- [ ] Buat CRUD Produk
-- [ ] Import data dari `gudang.txt`
-- [ ] Tambah dashboard & fitur pendukung
+Dashboard: Ringkasan total nilai aset dan peringatan produk stok menipis
 
-## Lisensi
+Pencarian: Cari produk berdasarkan SKU atau Nama
 
-Proyek ini dilisensikan dibawah [MIT License](./v1-console/LICENSE).
+Cara menjalankan:
 
-Dibuat oleh [@dimasbirru](https://github.com/dimasbirru)
+Import v2-php/sql/schema.sql ke phpMyAdmin.
+Jalankan php -S localhost:8000 di dalam folder v2-php/public.
+Buka http://localhost:8000.
+✅ Progress
+☑ Pindahkan versi C++ ke v1-console/
+☑ Setup struktur v2-php/
+☑ Buat koneksi database (PDO)
+☑ Buat Model Produk & GudangInventaris
+☑ Buat CRUD Produk (Web UI)
+☑ Tambah halaman laporan & pencarian
+□ (Opsional) Fitur export CSV
+□ (Opsional) Integrasi grafik Python ke Web
+📄 Lisensi
+Proyek ini dilisensikan dibawah MIT License.
+
+Dibuat oleh @dimasbirru
