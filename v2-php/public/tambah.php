@@ -4,7 +4,7 @@ require_once __DIR__ . '/../src/GudangInventaris.php';
 require_once __DIR__ . '/../src/Auth.php';
 
 $auth = new Auth($pdo);
-$auth->cekLogin(); // Proteksi halaman
+$auth->cekLogin();
 
 $gudang = new GudangInventaris($pdo);
 $pesan = '';
@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($sku === '' || $nama === '') {
         $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>SKU dan Nama tidak boleh kosong!</div>';
+    } elseif ($stok < 0 || $harga < 0) {
+        $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Stok dan Harga tidak boleh minus!</div>';
     } else {
         $produkBaru = new Produk($sku, $nama, $stok, $harga);
         if ($gudang->tambah($produkBaru)) {

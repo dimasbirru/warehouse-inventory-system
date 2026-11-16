@@ -4,7 +4,7 @@ require_once __DIR__ . '/../src/GudangInventaris.php';
 require_once __DIR__ . '/../src/Auth.php';
 
 $auth = new Auth($pdo);
-$auth->cekLogin(); // Proteksi halaman
+$auth->cekLogin();
 
 $gudang = new GudangInventaris($pdo);
 $pesan = '';
@@ -21,14 +21,18 @@ if (!$produk) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stokBaru = (int)$_POST['stok'];
-    $hargaBaru = (int)$_POST['harga'];
+    $stokBaru = (int)($_POST['stok'] ?? 0);
+    $hargaBaru = (int)($_POST['harga'] ?? 0);
 
-    if ($gudang->update($sku, $stokBaru, $hargaBaru)) {
-        header("Location: index.php?status=edit_sukses");
-        exit;
+    if ($stokBaru < 0 || $hargaBaru < 0) {
+        $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Stok dan Harga tidak boleh minus!</div>';
     } else {
-        $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Gagal memperbarui data.</div>';
+        if ($gudang->update($sku, $stokBaru, $hargaBaru)) {
+            header("Location: index.php?status=edit_sukses");
+            exit;
+        } else {
+            $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Gagal memperbarui data.</div>';
+        }
     }
 }
 ?>
