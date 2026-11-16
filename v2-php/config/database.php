@@ -1,5 +1,4 @@
 <?php
-
 $host = 'localhost';
 $db   = 'warehouse_db';
 $user = 'root'; 

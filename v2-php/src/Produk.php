@@ -1,11 +1,10 @@
 <?php
-
 class Produk {
     private int $id;
     private string $sku;
     private string $nama;
     private int $stok;
-    private int $harga; // Di PHP kita pakai int (BIGINT di MySQL) untuk Rupiah
+    private int $harga;
 
     public function __construct(string $sku, string $nama, int $stok, int $harga, int $id = 0) {
         $this->id = $id;

@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/GudangInventaris.php';
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth($pdo);
+$auth->cekLogin(); // Proteksi halaman
 
 $gudang = new GudangInventaris($pdo);
 $totalNilai = $gudang->totalNilaiInventaris();
@@ -30,7 +34,6 @@ $stokMenipis = array_filter($semuaProduk, function($p) { return $p->getStok() < 
 
 <div class="container">
     <div class="row mb-4">
-        <!-- Kartu Total Aset -->
         <div class="col-md-12">
             <div class="card card-custom bg-primary text-white">
                 <div class="card-body p-4">
@@ -42,7 +45,6 @@ $stokMenipis = array_filter($semuaProduk, function($p) { return $p->getStok() < 
         </div>
     </div>
 
-    <!-- Peringatan Stok Menipis -->
     <div class="card card-custom">
         <div class="card-header bg-white border-0 pt-4 pb-0">
             <h5 class="fw-bold"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Produk dengan Stok Menipis (&lt; 10)</h5>

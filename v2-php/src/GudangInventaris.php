@@ -27,6 +27,7 @@ class GudangInventaris {
         }
         return null; 
     }
+
     public function cariBanyak(string $keyword): array {
         $stmt = $this->pdo->prepare("SELECT * FROM produk WHERE sku LIKE ? OR nama LIKE ? ORDER BY id ASC");
         $stmt->execute(["%$keyword%", "%$keyword%"]);
@@ -45,10 +46,12 @@ class GudangInventaris {
         $stmt = $this->pdo->prepare("INSERT INTO produk (sku, nama, stok, harga) VALUES (?, ?, ?, ?)");
         return $stmt->execute([$produk->getSKU(), $produk->getNama(), $produk->getStok(), $produk->getHarga()]);
     }
+
     public function update(string $sku, int $stokBaru, int $hargaBaru): bool {
         $stmt = $this->pdo->prepare("UPDATE produk SET stok = ?, harga = ? WHERE sku = ?");
         return $stmt->execute([$stokBaru, $hargaBaru, $sku]);
     }
+
     public function hapus(string $sku): bool {
         $stmt = $this->pdo->prepare("DELETE FROM produk WHERE sku = ?");
         return $stmt->execute([$sku]);

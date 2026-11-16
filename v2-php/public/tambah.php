@@ -1,15 +1,19 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/GudangInventaris.php';
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth($pdo);
+$auth->cekLogin(); // Proteksi halaman
 
 $gudang = new GudangInventaris($pdo);
 $pesan = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sku = trim($_POST['sku']);
-    $nama = trim($_POST['nama']);
-    $stok = (int)$_POST['stok'];
-    $harga = (int)$_POST['harga'];
+    $sku = trim($_POST['sku'] ?? '');
+    $nama = trim($_POST['nama'] ?? '');
+    $stok = (int)($_POST['stok'] ?? 0);
+    $harga = (int)($_POST['harga'] ?? 0);
 
     if ($sku === '' || $nama === '') {
         $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>SKU dan Nama tidak boleh kosong!</div>';

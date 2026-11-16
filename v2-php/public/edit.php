@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/GudangInventaris.php';
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth($pdo);
+$auth->cekLogin(); // Proteksi halaman
 
 $gudang = new GudangInventaris($pdo);
 $pesan = '';

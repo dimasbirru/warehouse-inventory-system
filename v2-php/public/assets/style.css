@@ -1,11 +1,9 @@
-/* v2-php/public/assets/style.css */
 body {
     background-color: #f4f6f9;
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
 
-/* Navbar Modern */
 .navbar-custom {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,.08);
@@ -16,14 +14,12 @@ body {
     color: #2c3e50 !important;
 }
 
-/* Card Container */
 .card-custom {
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,.05);
 }
 
-/* Tabel Modern */
 .table-custom th {
     background-color: #f8f9fa;
     color: #6c757d;
@@ -36,7 +32,6 @@ body {
     vertical-align: middle;
 }
 
-/* Tombol Aksi */
 .btn-action {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
