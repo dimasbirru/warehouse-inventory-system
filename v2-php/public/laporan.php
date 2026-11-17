@@ -27,6 +27,7 @@ $stokMenipis = array_filter($semuaProduk, function($p) { return $p->getStok() < 
     <div class="container">
         <a class="navbar-brand" href="index.php"><i class="fas fa-boxes text-primary me-2"></i>Warehouse System</a>
         <div class="ms-auto">
+            <a href="export.php" class="btn btn-success me-2"><i class="fas fa-file-excel"></i> Download CSV</a>
             <a href="index.php" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
         </div>
     </div>
