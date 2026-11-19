@@ -12,7 +12,7 @@ class GudangInventaris {
         $stmt = $this->pdo->query("SELECT * FROM produk ORDER BY id ASC");
         $hasil = [];
         while ($row = $stmt->fetch()) {
-            $hasil[] = new Produk($row['sku'], $row['nama'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
+            $hasil[] = new Produk($row['sku'], $row['nama'], $row['kategori'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
         }
         return $hasil;
     }
@@ -23,33 +23,32 @@ class GudangInventaris {
         $row = $stmt->fetch();
         
         if ($row) {
-            return new Produk($row['sku'], $row['nama'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
+            return new Produk($row['sku'], $row['nama'], $row['kategori'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
         }
-        return null; 
+        return null;
     }
 
     public function cariBanyak(string $keyword): array {
-        $stmt = $this->pdo->prepare("SELECT * FROM produk WHERE sku LIKE ? OR nama LIKE ? ORDER BY id ASC");
-        $stmt->execute(["%$keyword%", "%$keyword%"]);
+        $stmt = $this->pdo->prepare("SELECT * FROM produk WHERE sku LIKE ? OR nama LIKE ? OR kategori LIKE ? ORDER BY id ASC");
+        $stmt->execute(["%$keyword%", "%$keyword%", "%$keyword%"]);
         $hasil = [];
         while ($row = $stmt->fetch()) {
-            $hasil[] = new Produk($row['sku'], $row['nama'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
+            $hasil[] = new Produk($row['sku'], $row['nama'], $row['kategori'], (int)$row['stok'], (int)$row['harga'], (int)$row['id']);
         }
         return $hasil;
     }
 
     public function tambah(Produk $produk): bool {
         if ($this->cariBySKU($produk->getSKU()) !== null) {
-            return false; 
+            return false;
         }
-
-        $stmt = $this->pdo->prepare("INSERT INTO produk (sku, nama, stok, harga) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$produk->getSKU(), $produk->getNama(), $produk->getStok(), $produk->getHarga()]);
+        $stmt = $this->pdo->prepare("INSERT INTO produk (sku, nama, kategori, stok, harga) VALUES (?, ?, ?, ?, ?)");
+        return $stmt->execute([$produk->getSKU(), $produk->getNama(), $produk->getKategori(), $produk->getStok(), $produk->getHarga()]);
     }
 
-    public function update(string $sku, int $stokBaru, int $hargaBaru): bool {
-        $stmt = $this->pdo->prepare("UPDATE produk SET stok = ?, harga = ? WHERE sku = ?");
-        return $stmt->execute([$stokBaru, $hargaBaru, $sku]);
+    public function update(string $sku, string $kategoriBaru, int $stokBaru, int $hargaBaru): bool {
+        $stmt = $this->pdo->prepare("UPDATE produk SET kategori = ?, stok = ?, harga = ? WHERE sku = ?");
+        return $stmt->execute([$kategoriBaru, $stokBaru, $hargaBaru, $sku]);
     }
 
     public function hapus(string $sku): bool {
