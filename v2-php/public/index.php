@@ -68,6 +68,7 @@ if ($keyword !== '') {
                         <tr>
                             <th>No</th>
                             <th>SKU</th>
+			    <th>Kategori</th>
                             <th>Nama Produk</th>
                             <th>Stok</th>
                             <th>Harga</th>
@@ -82,7 +83,7 @@ if ($keyword !== '') {
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td><span class="badge bg-secondary"><?= htmlspecialchars($p->getSKU()) ?></span></td>
-                                <td class="fw-bold"><?= htmlspecialchars($p->getNama()) ?></td>
+                                                                <td><span class="badge bg-info text-dark"><?= htmlspecialchars($p->getKategori()) ?></span></td>
                                 <td>
                                     <?php if ($p->getStok() < 10): ?>
                                         <span class="badge bg-danger"><?= $p->getStok() ?></span>

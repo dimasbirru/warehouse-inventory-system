@@ -12,6 +12,7 @@ $pesan = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sku = trim($_POST['sku'] ?? '');
     $nama = trim($_POST['nama'] ?? '');
+    $kategori = trim($_POST['kategori'] ?? 'Umum');
     $stok = (int)($_POST['stok'] ?? 0);
     $harga = (int)($_POST['harga'] ?? 0);
 
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($stok < 0 || $harga < 0) {
         $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Stok dan Harga tidak boleh minus!</div>';
     } else {
-        $produkBaru = new Produk($sku, $nama, $stok, $harga);
+        $produkBaru = new Produk($sku, $nama, $kategori, $stok, $harga);
         if ($gudang->tambah($produkBaru)) {
             header("Location: index.php?status=tambah_sukses");
             exit;
@@ -61,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-body">
                     <?= $pesan ?>
                     <form method="POST" action="">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">SKU Produk</label>
-                            <input type="text" name="sku" class="form-control" required placeholder="Contoh: PRD-001">
+                       <div class="mb-3">
+                            <label class="form-label fw-bold">Kategori Produk</label>
+                            <input type="text" name="kategori" class="form-control" required placeholder="Contoh: Laptop, Aksesoris, Makanan" value="Umum">
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Produk</label>

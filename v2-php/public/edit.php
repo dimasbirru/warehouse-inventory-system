@@ -21,13 +21,14 @@ if (!$produk) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $kategoriBaru = trim($_POST['kategori'] ?? 'Umum');
     $stokBaru = (int)($_POST['stok'] ?? 0);
     $hargaBaru = (int)($_POST['harga'] ?? 0);
 
     if ($stokBaru < 0 || $hargaBaru < 0) {
         $pesan = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Stok dan Harga tidak boleh minus!</div>';
     } else {
-        if ($gudang->update($sku, $stokBaru, $hargaBaru)) {
+        if ($gudang->update($sku, $kategoriBaru, $stokBaru, $hargaBaru)) {
             header("Location: index.php?status=edit_sukses");
             exit;
         } else {
@@ -74,6 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Produk (Tidak bisa diubah)</label>
                             <input type="text" class="form-control bg-light" value="<?= htmlspecialchars($produk->getNama()) ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Kategori Produk</label>
+                            <input type="text" name="kategori" class="form-control" required value="<?= htmlspecialchars($produk->getKategori()) ?>">
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
